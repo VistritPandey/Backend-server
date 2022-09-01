@@ -3,7 +3,7 @@ import json
 from flask_cors import CORS
 import pymongo
   
-connection_url = 'mongodb://sarthak:sarthak@cluster0-shard-00-00.yx3j9.mongodb.net:27017,cluster0-shard-00-01.yx3j9.mongodb.net:27017,cluster0-shard-00-02.yx3j9.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-dvxyd1-shard-0&authSource=admin&retryWrites=true&w=majority'
+connection_url = 'put your id'
 app = Flask(__name__)
 client = pymongo.MongoClient(connection_url)
 
@@ -64,26 +64,11 @@ def checkCurrency(email, emailAddress,amount):
     else:
         return json.dumps({"curr":False})
   
-# # To find all the entries/documents in a table/collection,
-# # find() function is used. If you want to find all the documents
-# # that matches a certain query, you can pass a queryObject as an
-# # argument.
-# @app.route('/find/', methods=['GET'])
-# def findAll():
-#     query = backend.find()
-#     output = {}
-#     i = 0
-#     for x in query:
-#         output[i] = x
-#         output[i].pop('_id')
-#         i += 1
-#     return jsonify(output)
-  
-  
 # # To update a document in a collection, update_one()
 # # function is used. The queryObject to find the document is passed as
 # # the first argument, the corresponding updateObject is passed as the
 # # second argument under the '$set' index.
+
 @app.route('/updateCurrency/<email>/<emailAddress>/<currencyDeducted>/', methods=['GET'])
 def setCurrency(email,emailAddress,currencyDeducted):
     queryObject = {email: emailAddress}
@@ -103,8 +88,6 @@ def getCurrency(email,emailAddress):
     query = backend.find_one(queryObject)
     obj=query['currency']
     return json.dumps({"int":obj})
-    
-  
   
 if __name__ == '__main__':
     app.run(debug=True)
