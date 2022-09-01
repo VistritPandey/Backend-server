@@ -1,7 +1,3 @@
-
-## This repo contains the password for mongo Cloud. Not to be shared publically.
-
-
 # Backend-server
 
 # Installation: 
